@@ -104,5 +104,9 @@
             <source>Output filename for the merged file</source>
             <translation>結合した画像の出力名</translation>
         </message>
+        <message>
+            <source>※Attention※&#xa;All contents in the Output directory for tile images will be deleted &#xa;when the solver is executed. &#xa;Please make sure to select a folder that does not contain important data.</source>
+            <translation>※注意※&#xa;タイル画像出力先のフォルダはソルバ実行時に中身が全削除されます。</translation>
+        </message>
     </context>
 </TS>

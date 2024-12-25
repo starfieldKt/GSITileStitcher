@@ -3,6 +3,15 @@ import os
 import requests
 from PIL import Image
 from pyproj import CRS, Transformer
+import shutil
+
+def reset_tile_cache(output_dir):
+    """
+    タイルキャッシュをリセット
+    """
+    if os.path.exists(output_dir):
+        shutil.rmtree(output_dir)
+    os.makedirs(output_dir)
 
 def latlon_to_tile(lat, lon, zoom):
     """
@@ -115,7 +124,7 @@ def stitch_tiles(tiles, output_file):
     grid_height = max(heights) * len(set(tile[2] for tile in tiles))
     stitched_image = Image.new('RGB', (grid_width, grid_height))
 
-    for idx, (file_path, x_offset, y_offset) in enumerate(tiles):
+    for file_path, x_offset, y_offset in tiles:
         img = Image.open(file_path)
         stitched_image.paste(img, (x_offset * max(widths), y_offset * max(heights)))
 
@@ -170,6 +179,8 @@ def download_and_stitch(x_min, y_min, x_max, y_max, epsg, zoom, output_dir, outp
         output_dir (str): タイル画像を保存するディレクトリ
         output_file (str): 結合画像のファイル名
     """
+    reset_tile_cache(output_dir)
+
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
