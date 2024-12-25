@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ============================================
+ ソルバーの基本情報
+============================================= -->
+<SolverDefinition 
+name="GSITileStitcher" 
+caption="GSI Tile Stitcher" 
+version="1.0.24122501" 
+copyright="Keita Hoshino" 
+release="2024.12.25" 
+homepage="" 
+executable="main.py" 
+iterationtype="time" 
+gridtype="structured2d"
+>
+
+    <!-- ============================================
+     計算条件の定義
+    ============================================= -->
+    <CalculationCondition>
+        <Tab name="Condition" caption="Condition">
+            <Item name="epsg_code" caption="EPSG code">
+                <Definition valueType="integer" default="6669">
+                    <Enumeration value="6669" caption="JGD2011 / Japan Plane Rectangular CS I"/>
+                    <Enumeration value="6670" caption="JGD2011 / Japan Plane Rectangular CS II"/>
+                    <Enumeration value="6671" caption="JGD2011 / Japan Plane Rectangular CS III"/>
+                    <Enumeration value="6672" caption="JGD2011 / Japan Plane Rectangular CS IV"/>
+                    <Enumeration value="6673" caption="JGD2011 / Japan Plane Rectangular CS V"/>
+                    <Enumeration value="6674" caption="JGD2011 / Japan Plane Rectangular CS VI"/>
+                    <Enumeration value="6675" caption="JGD2011 / Japan Plane Rectangular CS VII"/>
+                    <Enumeration value="6676" caption="JGD2011 / Japan Plane Rectangular CS VIII"/>
+                    <Enumeration value="6677" caption="JGD2011 / Japan Plane Rectangular CS IX"/>
+                    <Enumeration value="6678" caption="JGD2011 / Japan Plane Rectangular CS X"/>
+                    <Enumeration value="6679" caption="JGD2011 / Japan Plane Rectangular CS XI"/>
+                    <Enumeration value="6680" caption="JGD2011 / Japan Plane Rectangular CS XII"/>
+                    <Enumeration value="6681" caption="JGD2011 / Japan Plane Rectangular CS XIII"/>
+                    <Enumeration value="6682" caption="JGD2011 / Japan Plane Rectangular CS XIV"/>
+                    <Enumeration value="6683" caption="JGD2011 / Japan Plane Rectangular CS XV"/>
+                    <Enumeration value="6684" caption="JGD2011 / Japan Plane Rectangular CS XVI"/>
+                    <Enumeration value="6685" caption="JGD2011 / Japan Plane Rectangular CS XVII"/>
+                    <Enumeration value="6686" caption="JGD2011 / Japan Plane Rectangular CS XVIII"/>
+                    <Enumeration value="6687" caption="JGD2011 / Japan Plane Rectangular CS XIX"/>
+                </Definition> 
+            </Item>
+            <Item name="zoom_level" caption="zoom level">
+                <Definition valueType="integer" default="14" min="2" max="18">
+                </Definition>
+            </Item>
+            <Item name="output_directory" caption="Output directory for tile images">
+                <Definition valueType="foldername" />
+            </Item>
+            <Item name="output_filename" caption="Output filename for the merged file">
+                <Definition valueType="filename_all" default="flow.dat" />
+            </Item>
+        </Tab>
+    </CalculationCondition>
+
+</SolverDefinition>
