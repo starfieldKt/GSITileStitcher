@@ -44,21 +44,11 @@ grid_x_arr, grid_y_arr = iric.cg_iRIC_Read_Grid2d_Coords(fid)
 grid_x_arr = grid_x_arr.reshape(jsize, isize).T
 grid_y_arr = grid_y_arr.reshape(jsize, isize).T
 
-# 格子の4隅の座標を取得
-grid_x_i_min_j_min = grid_x_arr[0, 0]
-grid_y_i_min_j_min = grid_y_arr[0, 0]
-grid_x_i_min_j_max = grid_x_arr[0, jsize - 1]
-grid_y_i_min_j_max = grid_y_arr[0, jsize - 1]
-grid_x_i_max_j_min = grid_x_arr[isize - 1, 0]
-grid_y_i_max_j_min = grid_y_arr[isize - 1, 0]
-grid_x_i_max_j_max = grid_x_arr[isize - 1, jsize - 1]
-grid_y_i_max_j_max = grid_y_arr[isize - 1, jsize - 1]
-
-# 座標の最大値・最小値を取得
-x_min = min(grid_x_i_min_j_min, grid_x_i_min_j_max, grid_x_i_max_j_min, grid_x_i_max_j_max)
-x_max = max(grid_x_i_min_j_min, grid_x_i_min_j_max, grid_x_i_max_j_min, grid_x_i_max_j_max)
-y_min = min(grid_y_i_min_j_min, grid_y_i_min_j_max, grid_y_i_max_j_min, grid_y_i_max_j_max)
-y_max = max(grid_y_i_min_j_min, grid_y_i_min_j_max, grid_y_i_max_j_min, grid_y_i_max_j_max)
+# 格子の配列全体から最大最小を求める
+x_min = grid_x_arr.min()
+x_max = grid_x_arr.max()
+y_min = grid_y_arr.min()
+y_max = grid_y_arr.max()
 
 print("Successfully read grid coordinates")
 print("x_min: " + str(x_min) + " y_min: " + str(y_min))
