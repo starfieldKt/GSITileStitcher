@@ -1,0 +1,9 @@
+﻿# What is GSI Tile Stitcher
+
+This tool allows you to download and stitch together Geospatial Information Authority (GSI) tiles (photos) at any zoom level within the grid range, and also creates a position information file for offline use of background images in the calculation area.
+
+# Usage
+
+1. Create an appropriate grid for the area where you want the background image. (Rectangular grid generation tools are recommended)
+2. Enter the coordinate system, zoom level, and save location in the calculation conditions.
+3. Run the solver.
