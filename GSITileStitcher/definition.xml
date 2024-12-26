@@ -6,9 +6,9 @@
 <SolverDefinition 
 name="GSITileStitcher" 
 caption="GSI Tile Stitcher" 
-version="1.0.24122501" 
+version="1.0.24122601" 
 copyright="Keita Hoshino" 
-release="2024.12.25" 
+release="2024.12.26" 
 homepage="" 
 executable="main.py" 
 iterationtype="time" 
