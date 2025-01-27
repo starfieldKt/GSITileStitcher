@@ -2,6 +2,14 @@ import iric
 import GSITileStitcher
 import sys
 
+url_templates = {
+    "1": "https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png",
+    "2": "https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png",
+    "3": "https://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg",
+    "4": "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+    "5": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+}
+
 ###############################################################################
 # Main
 # CGNSファイルから格子の4隅の座標を取得し、GSITileStitcherを用いてタイル画像を生成する
@@ -58,21 +66,25 @@ print("x_max: " + str(x_max) + " y_max: " + str(y_max))
 # 計算条件の読み込み
 ###############################################################################
 
+url_template_index = iric.cg_iRIC_Read_Integer(fid, "url_template_index")
 epsg_code = iric.cg_iRIC_Read_Integer(fid, "epsg_code")
 zoom_level = iric.cg_iRIC_Read_Integer(fid, "zoom_level")
-output_filename = iric.cg_iRIC_Read_String(fid, "output_filename")+ ".jpg"
+output_filename = iric.cg_iRIC_Read_String(fid, "output_filename") + ".png"
 output_directory = iric.cg_iRIC_Read_String(fid, "output_directory")
+
+url_template = url_templates[str(url_template_index)]
 
 print("Successfully read calculation conditions")
 print("epsg_code: " + str(epsg_code))
 print("zoom_level: " + str(zoom_level))
 print("output_filename: " + output_filename)
 print("output_directory: " + output_directory)
+print("url_template: " + url_template)
 
 ###############################################################################
 # タイル画像の生成
 ###############################################################################
 
-GSITileStitcher.download_and_stitch(x_min, y_min, x_max, y_max, epsg_code, zoom_level, output_directory, output_filename)
+GSITileStitcher.download_and_stitch(x_min, y_min, x_max, y_max, epsg_code, zoom_level, output_directory, output_filename, url_template)
 
 print("----------finish----------")

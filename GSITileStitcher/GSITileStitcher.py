@@ -77,7 +77,7 @@ def latlon_to_epsg(lon, lat, to_epsg):
     x, y = transformer.transform(lon, lat)
     return x, y
 
-def download_tile(z, x, y, output_dir):
+def download_tile(z, x, y, output_dir, url_template):
     """
     タイルをダウンロード
     Args:
@@ -85,15 +85,15 @@ def download_tile(z, x, y, output_dir):
         x (int): タイルのX座標
         y (int): タイルのY座標
         output_dir (str): タイル画像を保存するディレクトリ
+        url_template (str): タイル画像のURLテンプレート
     """
 
     # タイル画像のURL
-    # 現在は地理院タイルの航空右写真を利用
-    url = f"https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg"
+    url = url_template.format(z=z, x=x, y=y)
     print(f"Downloading tile: {url}")
     response = requests.get(url, stream=True)
     if response.status_code == 200:
-        filename = os.path.join(output_dir, f"{z}_{x}_{y}.jpg")
+        filename = os.path.join(output_dir, f"{z}_{x}_{y}.png")
         with open(filename, 'wb') as f:
             for chunk in response.iter_content(1024):
                 f.write(chunk)
@@ -122,11 +122,11 @@ def stitch_tiles(tiles, output_file):
     widths, heights = zip(*(img.size for img in images))
     grid_width = max(widths) * len(set(tile[1] for tile in tiles))
     grid_height = max(heights) * len(set(tile[2] for tile in tiles))
-    stitched_image = Image.new('RGB', (grid_width, grid_height))
+    stitched_image = Image.new('RGBA', (grid_width, grid_height))
 
     for file_path, x_offset, y_offset in tiles:
-        img = Image.open(file_path)
-        stitched_image.paste(img, (x_offset * max(widths), y_offset * max(heights)))
+        img = Image.open(file_path).convert('RGBA')
+        stitched_image.paste(img, (x_offset * max(widths), y_offset * max(heights)), img)
 
     stitched_image.save(output_file)
     print(f"Saved stitched image to {output_file}")
@@ -166,7 +166,7 @@ def create_jgw_file(min_x_tile, min_y_tile, zoom, output_file, target_epsg):
 
     print(f"Saved JGW file to {jgw_file}")
 
-def download_and_stitch(x_min, y_min, x_max, y_max, epsg, zoom, output_dir, output_file):
+def download_and_stitch(x_min, y_min, x_max, y_max, epsg, zoom, output_dir, output_file, url_template):
     """
     指定範囲のタイルをダウンロードして結合
     Args:
@@ -178,6 +178,7 @@ def download_and_stitch(x_min, y_min, x_max, y_max, epsg, zoom, output_dir, outp
         zoom (int): ズームレベル
         output_dir (str): タイル画像を保存するディレクトリ
         output_file (str): 結合画像のファイル名
+        url_template (str): タイル画像のURLテンプレート
     """
     reset_tile_cache(output_dir)
 
@@ -196,7 +197,7 @@ def download_and_stitch(x_min, y_min, x_max, y_max, epsg, zoom, output_dir, outp
     tiles = []
     for x in range(x_tile_min, x_tile_max + 1):
         for y in range(y_tile_min, y_tile_max + 1):
-            tile_path = download_tile(zoom, x, y, output_dir)
+            tile_path = download_tile(zoom, x, y, output_dir, url_template)
             if tile_path:
                 tiles.append((tile_path, x - x_tile_min, y - y_tile_min))
 
@@ -216,11 +217,12 @@ if __name__ == "__main__":
     epsg_code = 6680
     zoom_level = 16
     output_directory = "./tiles"
-    output_filename = "stitched_image.jpg"
+    output_filename = "stitched_image.png"
+    url_template = "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 
     download_and_stitch(
         min_x_coord, min_y_coord, max_x_coord, max_y_coord,
-        epsg_code, zoom_level, output_directory, output_filename
+        epsg_code, zoom_level, output_directory, output_filename, url_template
     )
 
 # EPSGコード
@@ -243,4 +245,3 @@ if __name__ == "__main__":
     # EPSG:6685 - JGD2011 / Japan Plane Rectangular CS XVII
     # EPSG:6686 - JGD2011 / Japan Plane Rectangular CS XVIII
     # EPSG:6687 - JGD2011 / Japan Plane Rectangular CS XIX
-    

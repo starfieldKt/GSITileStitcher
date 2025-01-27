@@ -5,8 +5,8 @@
 -->
     <context>
         <message>
-            <source>GSI Tile Stitcher</source>
-            <translation>地理院タイル(写真)取得結合ツール</translation>
+            <source>Tile Map Stitcher</source>
+            <translation>タイルマップ取得結合ツール</translation>
         </message>
         <message>
             <source>Condition</source>
@@ -15,6 +15,26 @@
         <message>
             <source>EPSG code</source>
             <translation>EPSG(座標系)</translation>
+        </message>
+        <message>
+            <source>GSI Maps (standard map)</source>
+            <translation>国土地理院 (標準地図)</translation>
+        </message>
+        <message>
+            <source>GSI Maps (pale map)</source>
+            <translation>国土地理院 (淡色地図)</translation>
+        </message>
+        <message>
+            <source>GSI Photo</source>
+            <translation>国土地理院 (写真)</translation>
+        </message>
+        <message>
+            <source>Google Maps (Map)</source>
+            <translation></translation>
+        </message>
+        <message>
+            <source>Google Maps (Satellite)</source>
+            <translation></translation>
         </message>
         <message>
             <source>JGD2011 / Japan Plane Rectangular CS I</source>
@@ -105,8 +125,12 @@
             <translation>結合した画像の出力名</translation>
         </message>
         <message>
-            <source>※Attention※&#xa;All contents in the Output directory for tile images will be deleted &#xa;when the solver is executed. &#xa;Please make sure to select a folder that does not contain important data.</source>
-            <translation>※注意※&#xa;タイル画像出力先のフォルダはソルバ実行時に中身が全削除されます。</translation>
+            <source>※Attention※
+All contents in the Output directory for tile images will be deleted 
+when the solver is executed. 
+Please make sure to select a folder that does not contain important data.</source>
+            <translation>※注意※
+タイル画像出力先のフォルダはソルバ実行時に中身が全削除されます。</translation>
         </message>
     </context>
 </TS>

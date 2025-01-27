@@ -5,11 +5,11 @@
 ============================================= -->
 <SolverDefinition 
 name="GSITileStitcher" 
-caption="GSI Tile Stitcher" 
-version="1.0.24122601" 
+caption="Tile Map Stitcher" 
+version="1.1.25012701" 
 copyright="Keita Hoshino" 
-release="2024.12.26" 
-homepage="" 
+release="2025.1.27" 
+homepage="https://github.com/starfieldKt/GSITileStitcher" 
 executable="main.py" 
 iterationtype="time" 
 gridtype="structured2d"
@@ -20,6 +20,15 @@ gridtype="structured2d"
     ============================================= -->
     <CalculationCondition>
         <Tab name="Condition" caption="Condition">
+            <Item name="url_template_index" caption="EPSG code">
+                <Definition valueType="integer" default="3">
+                    <Enumeration value="1" caption="GSI Maps (standard map)"/>
+                    <Enumeration value="2" caption="GSI Maps (pale map)"/>
+                    <Enumeration value="3" caption="GSI Photo"/>
+                    <Enumeration value="4" caption="Google Maps (Map)"/>
+                    <Enumeration value="5" caption="Google Maps (Satellite)"/>
+                </Definition> 
+            </Item>
             <Item name="epsg_code" caption="EPSG code">
                 <Definition valueType="integer" default="6669">
                     <Enumeration value="6669" caption="JGD2011 / Japan Plane Rectangular CS I"/>
@@ -51,7 +60,7 @@ gridtype="structured2d"
                 <Definition valueType="foldername" />
             </Item>
             <Item name="output_filename" caption="Output filename for the merged file">
-                <Definition valueType="filename_all" default="stitched_image" />
+                <Definition valueType="filename_all" default="flow.dat" />
             </Item>
             <Label caption="※Attention※&#xa;All contents in the Output directory for tile images will be deleted &#xa;when the solver is executed. &#xa;Please make sure to select a folder that does not contain important data."/>
         </Tab>
