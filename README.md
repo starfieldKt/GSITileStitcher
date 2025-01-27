@@ -1,4 +1,4 @@
-# What is GSI Tile Stitcher
+# What is Tile Map Stitcher
 
 This tool allows you to download and stitch together Geospatial Information Authority (GSI) tiles (photos) at any zoom level within the grid range, and also creates a position information file for offline use of background images in the calculation area.
 
@@ -13,7 +13,7 @@ Place the entire `GSITileStitcher` folder into `IRICROOT\private\solvers`.
 3. Run the solver.
 
 
-# 地理院タイル(写真)取得結合ツールとは
+# タイルマップ取得結合ツールとは
 
 計算領域の背景画像をオフラインでも使いたいときに、格子の範囲の任意のズームレベルの地理院タイル(写真)をダウンロード、結合し位置情報ファイルも作ってくれるツールです。
 
