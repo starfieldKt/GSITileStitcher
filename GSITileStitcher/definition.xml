@@ -6,9 +6,9 @@
 <SolverDefinition 
 name="GSITileStitcher" 
 caption="Tile Map Stitcher" 
-version="1.1.25012701" 
+version="1.1.25032401" 
 copyright="Keita Hoshino" 
-release="2025.1.27" 
+release="2025.3.24" 
 homepage="https://github.com/starfieldKt/GSITileStitcher" 
 executable="main.py" 
 iterationtype="time" 
@@ -60,7 +60,7 @@ gridtype="structured2d"
                 <Definition valueType="foldername" />
             </Item>
             <Item name="output_filename" caption="Output filename for the merged file">
-                <Definition valueType="filename_all" default="flow.dat" />
+                <Definition valueType="filename_all" default="flow.png" />
             </Item>
             <Label caption="※Attention※&#xa;All contents in the Output directory for tile images will be deleted &#xa;when the solver is executed. &#xa;Please make sure to select a folder that does not contain important data."/>
         </Tab>
