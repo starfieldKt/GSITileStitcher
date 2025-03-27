@@ -6,9 +6,9 @@
 <SolverDefinition 
 name="GSITileStitcher" 
 caption="Tile Map Stitcher" 
-version="1.1.25032402" 
+version="1.1.25032701" 
 copyright="Keita Hoshino" 
-release="2025.3.24" 
+release="2025.3.27" 
 homepage="https://github.com/starfieldKt/GSITileStitcher" 
 executable="main.py" 
 iterationtype="time" 
