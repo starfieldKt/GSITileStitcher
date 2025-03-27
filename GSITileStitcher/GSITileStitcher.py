@@ -131,9 +131,9 @@ def stitch_tiles(tiles, output_file):
     stitched_image.save(output_file)
     print(f"Saved stitched image to {output_file}")
 
-def create_jgw_file(min_x_tile, min_y_tile, zoom, output_file, target_epsg):
+def create_pgw_file(min_x_tile, min_y_tile, zoom, output_file, target_epsg):
     """
-    JGWファイルを生成
+    PGWファイルを生成
     Args:
         min_x_tile (int): 結合画像の左上タイルのX座標
         min_y_tile (int): 結合画像の左上タイルのY座標
@@ -160,7 +160,7 @@ def create_jgw_file(min_x_tile, min_y_tile, zoom, output_file, target_epsg):
         y_origin         # 左上のY座標
     ]
 
-    jgw_file = os.path.splitext(output_file)[0] + ".jgw"
+    jgw_file = os.path.splitext(output_file)[0] + ".pgw"
     with open(jgw_file, 'w') as f:
         f.writelines(f"{value}\n" for value in jgw_content)
 
@@ -203,7 +203,7 @@ def download_and_stitch(x_min, y_min, x_max, y_max, epsg, zoom, output_dir, outp
 
     if tiles:
         stitch_tiles(tiles, output_file)
-        create_jgw_file(
+        create_pgw_file(
             x_tile_min, y_tile_min, zoom, output_file, epsg
         )
     else:
